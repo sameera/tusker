@@ -1,0 +1,24 @@
+{
+  "name": "Tusker",
+  "version": "1.0.0",
+  "description": "Tusker",
+  "main": "index.js",
+  "author": {
+    "name": "Sameera Perera",
+    "email": "sameera@codoxide.com"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node index.js && mocha --recursive | exit(1)"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongoose": "^4.4.19",
+    "promise": "^7.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "mocha-logger": "^1.0.3"
+  }
+}

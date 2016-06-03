@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>Tusker</Name>
+    <RootNamespace>Tusker</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>850bf3b0-278a-4db9-a283-4a09e4bcd091</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>index.ts</StartupFile>
+    <StartWebBrowser>True</StartWebBrowser>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <ProjectView>ProjectFiles</ProjectView>
+    <NodejsPort>1337</NodejsPort>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <EnableTypeScript>true</EnableTypeScript>
+    <StartWebBrowser>true</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="typings.json" />
+    <Content Include="typings\globals\chai\typings.json" />
+    <Content Include="typings\globals\express-serve-static-core\typings.json" />
+    <Content Include="typings\globals\express\typings.json" />
+    <Content Include="typings\globals\mime\typings.json" />
+    <Content Include="typings\globals\mocha\typings.json" />
+    <Content Include="typings\globals\mongoose\typings.json" />
+    <Content Include="typings\globals\node\typings.json" />
+    <Content Include="typings\globals\promise\typings.json" />
+    <Content Include="typings\globals\serve-static\typings.json" />
+    <Content Include="typings\globals\superagent\typings.json" />
+    <Content Include="typings\globals\supertest\typings.json" />
+    <TypeScriptCompile Include="api\1.0\index.ts" />
+    <TypeScriptCompile Include="api\1.0\RoomRepository.ts" />
+    <TypeScriptCompile Include="api\1.0\TaskRepository.ts" />
+    <TypeScriptCompile Include="core\index.ts" />
+    <TypeScriptCompile Include="index.ts" />
+    <TypeScriptCompile Include="model\index.ts" />
+    <TypeScriptCompile Include="model\model.types.ts" />
+    <TypeScriptCompile Include="model\RoomModel.ts" />
+    <TypeScriptCompile Include="model\TaskModel.ts" />
+    <TypeScriptCompile Include="core\server.ts" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <TypeScriptCompile Include="test\api\task.spec.ts" />
+    <TypeScriptCompile Include="typings\globals\chai\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\express-serve-static-core\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\mime\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\mocha\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\mongoose\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\promise\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\serve-static\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\superagent\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\supertest\index.d.ts" />
+    <TypeScriptCompile Include="typings\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="api\" />
+    <Folder Include="api\1.0\" />
+    <Folder Include="core\" />
+    <Folder Include="model\" />
+    <Folder Include="test\" />
+    <Folder Include="test\api\" />
+    <Folder Include="typings\" />
+    <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\chai\" />
+    <Folder Include="typings\globals\express-serve-static-core\" />
+    <Folder Include="typings\globals\express\" />
+    <Folder Include="typings\globals\mime\" />
+    <Folder Include="typings\globals\mocha\" />
+    <Folder Include="typings\globals\mongoose\" />
+    <Folder Include="typings\globals\node\" />
+    <Folder Include="typings\globals\promise\" />
+    <Folder Include="typings\globals\serve-static\" />
+    <Folder Include="typings\globals\superagent\" />
+    <Folder Include="typings\globals\supertest\" />
+  </ItemGroup>
+  <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <TypeScriptTarget>ES6</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
