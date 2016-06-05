@@ -7,5 +7,6 @@
 /// <reference path="globals/node/index.d.ts" />
 /// <reference path="globals/promise/index.d.ts" />
 /// <reference path="globals/serve-static/index.d.ts" />
+/// <reference path="globals/sinon/index.d.ts" />
 /// <reference path="globals/superagent/index.d.ts" />
 /// <reference path="globals/supertest/index.d.ts" />

@@ -10,6 +10,7 @@
     "promise": "registry:dt/promise#7.1.1+20160602154553",
     "serve-static": "registry:dt/serve-static#0.0.0+20160501131543",
     "should": "registry:dt/should#8.1.1+20160521152556",
+    "sinon": "registry:dt/sinon#1.16.0+20160517064723",
     "superagent": "registry:dt/superagent#1.4.0+20160317120654",
     "supertest": "registry:dt/supertest#1.1.0+20160317120654"
   }

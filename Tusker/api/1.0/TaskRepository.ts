@@ -16,19 +16,23 @@ export class TaskRepository implements core.RouteHandler {
         return router;
     }
 
-    public getTasks = (req: express.Request, res: express.Response): void => {
+    public getTasks = (req: express.Request, res: express.Response, next: express.NextFunction): void => {
 
         let roomId = <string>req.params[this.roomParam];
         
         if (!req.params[this.roomParam]) {
             res.sendStatus(422);
-        } else {
-            this.getTasksForRoom(roomId.toString()).then(
-                task => res.json(task)
-            ).catch(
-                task => res.sendStatus(404)
-            );
+            return next();
         }
+
+        this.getTasksForRoom(roomId.toString())
+            .then(task => {
+                res.json(task);
+                next();
+            }).catch(err => {
+                res.sendStatus(404);
+                next(err);
+            });
     }
 
     private getTasksForRoom = (roomId: string): IThenable<Task> => {
@@ -37,6 +41,9 @@ export class TaskRepository implements core.RouteHandler {
                 roomId: roomId,
                 name: "Vacuum"
             });
+
+
+
             /*
             model.TaskModel.findOne(<Task>{ roomId: roomId }, (error, task) => {
                 if (error) reject(error);

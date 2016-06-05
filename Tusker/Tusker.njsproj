@@ -52,10 +52,10 @@
     <TypeScriptCompile Include="core\index.ts" />
     <TypeScriptCompile Include="index.ts" />
     <TypeScriptCompile Include="model\index.ts" />
-    <TypeScriptCompile Include="model\model.types.ts" />
+    <TypeScriptCompile Include="model\_types.ts" />
     <TypeScriptCompile Include="model\RoomModel.ts" />
     <TypeScriptCompile Include="model\TaskModel.ts" />
-    <TypeScriptCompile Include="core\server.ts" />
+    <TypeScriptCompile Include="core\AppBuilder.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <TypeScriptCompile Include="test\api\task.spec.ts" />
