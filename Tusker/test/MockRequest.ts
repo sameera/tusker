@@ -23,6 +23,9 @@ class MockRequest {
     }
 
     public verifyAs = (assertions: (err: any) => void, done: (err?: any) => void): void => {
+        // Found that assertion errors inside async code blocks don't cause the test to fail 
+        // even if they throw an AssertionError. Therefore, catch the error and send it to the
+        // callback.
         this.controller(this.req || <any>{}, this.res || <any>{}, err => {
             try {
                 assertions(err);
