@@ -39,6 +39,4 @@ stages:
               inputs:
                 targetType: 'inline'
                 script: |
-                  # Write your commands here
-                  cd $(Pipeline.Workspace)
-                  ls
+                  echo $(TargetProject)
