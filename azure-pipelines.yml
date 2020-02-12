@@ -3,6 +3,9 @@
 # Name: Staging - Lambdas (az-devops-lambda-deployer)
 # Access Key ID & Secret Access Key: <Get this from "Staging - Lambdas (az-devops-lambda-deployer)" secure note in LastPass>
 
+variables:
+  TargetProject: ''
+
 stages:
   - stage: 'Build'
     displayName: 'Build AWS Lambda Function'
@@ -29,7 +32,7 @@ stages:
         vmImage: 'ubuntu-latest'
       environment: Staging
       variables:
-        TargetProject: $[dependencies.Build.outputs['setvarStep.oTargetProject']]
+        mTargetProject: $[dependencies.Build.outputs['setvarStep.oTargetProject']]
       strategy:
         runOnce:
           deploy:
@@ -39,4 +42,5 @@ stages:
               inputs:
                 targetType: 'inline'
                 script: |
+                  echo $(mTargetProject)
                   echo $(TargetProject)
