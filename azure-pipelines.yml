@@ -1,0 +1,44 @@
+# If not created already, you need to create a Service Connection for the project as follows:
+# Type: AWS
+# Name: Staging - Lambdas (az-devops-lambda-deployer)
+# Access Key ID & Secret Access Key: <Get this from "Staging - Lambdas (az-devops-lambda-deployer)" secure note in LastPass>
+
+stages:
+  - stage: 'Build'
+    displayName: 'Build AWS Lambda Function'
+    jobs:
+    - job: 'Build'
+      displayName: 'Build job'
+      pool:
+        name: Azure Pipelines
+        vmImage: 'ubuntu-latest'
+  
+      steps:
+      - bash: |
+          proj=$(Build.DefinitionName)
+          echo "##vso[task.setvariable variable=TargetProject]$proj"
+          echo "##vso[task.setvariable variable=oTargetProject;isOutput=true]$proj"
+        displayName: 'Prepare Variables'
+  
+  - stage: 'Staging'
+    displayName: 'Staging Deployment'
+    dependsOn: 'Build'
+    jobs:
+    - deployment: Deploy
+      pool:
+        vmImage: 'ubuntu-latest'
+      environment: Staging
+      variables:
+        TargetProject: $[dependencies.Build.outputs['setvarStep.oTargetProject']]
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
+                script: |
+                  # Write your commands here
+                  cd $(Pipeline.Workspace)
+                  ls
