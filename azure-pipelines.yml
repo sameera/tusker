@@ -36,6 +36,7 @@ stages:
       environment: Staging
       variables:
         mTargetProject: $[dependencies.Build.outputs['setvarStep.oTargetProject']]
+        localTP: 'test!'
       strategy:
         runOnce:
           deploy:
@@ -49,3 +50,5 @@ stages:
                   echo $(TargetProject)
                   echo $mTargetProject
                   echo $TargetProject
+                  echo $(localTP)
+                  echo $localTP
