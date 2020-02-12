@@ -47,3 +47,5 @@ stages:
                 script: |
                   echo $(mTargetProject)
                   echo $(TargetProject)
+                  echo $mTargetProject
+                  echo $TargetProject
