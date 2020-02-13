@@ -20,7 +20,7 @@ steps:
 
 - script: |
     echo $(resources.pipeline.P.pipelineID
-    echo resources.pipeline.P.runName
-    echo resources.pipeline.P.runID)
+    echo $(resources.pipeline.P.runName)
+    echo $(resources.pipeline.P.runID)
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
