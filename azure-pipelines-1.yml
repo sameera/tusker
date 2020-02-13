@@ -19,7 +19,7 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    echo $(resources.pipeline.P.pipelineID
+    echo $(resources.pipeline.P.pipelineID)
     echo $(resources.pipeline.P.runName)
     echo $(resources.pipeline.P.runID)
     echo See https://aka.ms/yaml
