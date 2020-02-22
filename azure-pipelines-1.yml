@@ -23,4 +23,6 @@ steps:
     echo $(resources.pipeline.P.runName)
     echo $(resources.pipeline.P.runID)
     echo See https://aka.ms/yaml
+    $tags = git tag --sort=-creatordate
+    echo tags[0]
   displayName: 'Run a multi-line script'
