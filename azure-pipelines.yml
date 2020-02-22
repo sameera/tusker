@@ -25,6 +25,7 @@ stages:
 
       - bash: |
           echo $(TargetProject)
+          echo $(Build.Reason)
   
   - stage: 'Staging'
     displayName: 'Staging Deployment'
