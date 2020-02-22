@@ -22,9 +22,10 @@ steps:
     echo $(resources.pipeline.P.pipelineID)
     echo $(resources.pipeline.P.runName)
     echo $(resources.pipeline.P.runID)
+    echo $(Build.Reason)
     echo See https://aka.ms/yaml
     buildSource=$(Build.SourceBranch)
-    echo Srouce Branch $(Build.SourceBranch)
-    tag=${buidlSource#*/}
+    echo Branch $(Build.SourceBranch)
+    tag=${buildSource#*tags/}
     echo $tag
   displayName: 'Run a multi-line script'
