@@ -24,7 +24,7 @@ steps:
     echo $(resources.pipeline.P.runID)
     echo See https://aka.ms/yaml
     $buildSource = $(Build.SourceBranch)
-    echo $buildSource
+    echo Srouce Branch is $buildSource
     $tag = ${buidlSource#*/}
     echo $tag
   displayName: 'Run a multi-line script'
