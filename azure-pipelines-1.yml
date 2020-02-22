@@ -7,6 +7,7 @@ resources:
   pipelines:
   - pipeline: 'P'
     source: 'PreReq'
+    project: epceylon
 
 trigger:
 - master
