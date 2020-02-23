@@ -3,11 +3,14 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-resources:
-  pipelines:
-  - pipeline: 'P'
-    source: 'PreReq'
-    project: epceylon
+# resources:
+#   pipelines:
+#   - pipeline: 'P'
+#     source: 'PreReq'
+#     project: epceylon
+
+variables:
+  Cluster: 'EmailSync'
 
 stages:
 - stage: 'Verification'
@@ -22,13 +25,16 @@ stages:
         deploy:
           steps:
           - script: |
-              echo $(resources.pipeline.P.pipelineID)
-              echo $(resources.pipeline.P.runName)
-              echo $(resources.pipeline.P.runID)
-              echo $(Build.Reason)
-              echo See https://aka.ms/yaml
-              buildSource=$(Build.SourceBranch)
-              echo Branch $(Build.SourceBranch)
-              tag=${buildSource#*tags/}
-              echo $tag
-            displayName: 'Run a multi-line script'
+              echo $(Cluster)
+              
+          # - script: |
+          #     echo $(resources.pipeline.P.pipelineID)
+          #     echo $(resources.pipeline.P.runName)
+          #     echo $(resources.pipeline.P.runID)
+          #     echo $(Build.Reason)
+          #     echo See https://aka.ms/yaml
+          #     buildSource=$(Build.SourceBranch)
+          #     echo Branch $(Build.SourceBranch)
+          #     tag=${buildSource#*tags/}
+          #     echo $tag
+          #   displayName: 'Run a multi-line script'
