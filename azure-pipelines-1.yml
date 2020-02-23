@@ -12,21 +12,25 @@ resources:
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+stages:
+- stage: 'Verification'
+  pool:
+    vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  jobs:
+  - job: 'VerifyVariables'
+    steps:
+    - script: echo Hello, world!
+      displayName: 'Run a one-line script'
 
-- script: |
-    echo $(resources.pipeline.P.pipelineID)
-    echo $(resources.pipeline.P.runName)
-    echo $(resources.pipeline.P.runID)
-    echo $(Build.Reason)
-    echo See https://aka.ms/yaml
-    buildSource=$(Build.SourceBranch)
-    echo Branch $(Build.SourceBranch)
-    tag=${buildSource#*tags/}
-    echo $tag
-  displayName: 'Run a multi-line script'
+    - script: |
+        echo $(resources.pipeline.P.pipelineID)
+        echo $(resources.pipeline.P.runName)
+        echo $(resources.pipeline.P.runID)
+        echo $(Build.Reason)
+        echo See https://aka.ms/yaml
+        buildSource=$(Build.SourceBranch)
+        echo Branch $(Build.SourceBranch)
+        tag=${buildSource#*tags/}
+        echo $tag
+      displayName: 'Run a multi-line script'
