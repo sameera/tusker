@@ -47,7 +47,7 @@ stages:
             inputs:
               scriptSource: 'filePath'
               scriptPath: 'lambda-vars.py'
-              arguments: $(resources.pipeline.P.pipelineID)
+              arguments: 'Lambda.EmailSync.Integrator.OrchestrationWebhook'
 
           - script: |
               echo $(LambdaName)
