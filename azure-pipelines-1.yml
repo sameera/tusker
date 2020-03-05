@@ -39,6 +39,8 @@ stages:
               lambdaName = "-".join(lambdaParts)
               print("##vso[task.setvariable variable=LambdaName]%s" %lambdaName)
               print("##vso[task.setvariable variable=TargetProject]%s" %proj)
+              print(lambdaName)
+              print(proj)
               EOL
 
           - task: PythonScript@0
