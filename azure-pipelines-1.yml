@@ -3,28 +3,67 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-resources:
-  pipelines:
-  - pipeline: 'P'
-    source: 'PreReq'
+# resources:
+#   pipelines:
+#   - pipeline: 'P'
+#     source: 'PreReq'
+#     project: epceylon
 
-trigger:
-- master
+variables:
+  Cluster: 'EmailSync'
 
-pool:
-  vmImage: 'ubuntu-latest'
+stages:
+- stage: 'Verification'
+  pool:
+    vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  variables:
+    CulsterSuffixed: '$(Cluster)-Cluster'
 
-- script: |
-    echo $(resources.pipeline.P.pipelineID)
-    echo $(resources.pipeline.P.runName)
-    echo $(resources.pipeline.P.runID)
-    echo See https://aka.ms/yaml
-    $buildSource = $(Build.SourceBranch)
-    echo Srouce Branch is $buildSource
-    $tag = ${buidlSource#*/}
-    echo $tag
-  displayName: 'Run a multi-line script'
+  jobs:
+  - deployment: 'VerifyVariables'
+    environment: 'Dev'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: |
+              echo $(Cluster)
+              echo $(CulsterSuffixed)
+              cat > lambda-vars.py << EOL
+              import sys
+
+              proj = sys.argv[1]
+              paths = proj.split(".")[1:]
+              lambdaParts = []
+              
+              for p in paths:
+                  lambdaParts.append(p[0].lower() + p[1:])
+                  
+              lambdaName = "-".join(lambdaParts)
+              print("##vso[task.setvariable variable=LambdaName]%s" %lambdaName)
+              print("##vso[task.setvariable variable=TargetProject]%s" %proj)
+              print(lambdaName)
+              print(proj)
+              EOL
+
+          - task: PythonScript@0
+            inputs:
+              scriptSource: 'filePath'
+              scriptPath: 'lambda-vars.py'
+              arguments: 'Lambda.EmailSync.Integrator.OrchestrationWebhook'
+
+          - script: |
+              echo $(LambdaName)
+              echo $(TargetProject)
+          # - script: |
+          #     echo $(resources.pipeline.P.pipelineID)
+          #     echo $(resources.pipeline.P.runName)
+          #     echo $(resources.pipeline.P.runID)
+          #     echo $(Build.Reason)
+          #     echo See https://aka.ms/yaml
+          #     buildSource=$(Build.SourceBranch)
+          #     echo Branch $(Build.SourceBranch)
+          #     tag=${buildSource#*tags/}
+          #     echo $tag
+          #   displayName: 'Run a multi-line script'
