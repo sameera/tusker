@@ -17,6 +17,9 @@ stages:
   pool:
     vmImage: 'ubuntu-latest'
 
+  variables:
+    CulsterSuffixed: '$(Cluster)-Cluster'
+
   jobs:
   - deployment: 'VerifyVariables'
     environment: 'Dev'
@@ -26,6 +29,7 @@ stages:
           steps:
           - script: |
               echo $(Cluster)
+              echo $(CulsterSuffixed)
               cat > lambda-vars.py << EOL
               import sys
 
