@@ -1,0 +1,14 @@
+parameters:
+- name: ProjectName
+  type: string
+- name: BuildNumber
+  type: string
+- name: Cluster
+  type: string
+
+steps:
+- script: |
+    PROJ=${{ parameters.ProjectName }}
+    API_NAME="$(echo ${PROJ//\./-} | awk '{print tolower($0)}')"
+    IMG_TAG=${{ parameters.BuildNumber }}
+    echo "Deploying ${API_NAME}:${IMG_TAG} to ${Cluster}"
