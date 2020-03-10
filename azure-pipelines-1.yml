@@ -27,35 +27,41 @@ stages:
       runOnce:
         deploy:
           steps:
-          - script: |
-              echo $(Cluster)
-              echo $(CulsterSuffixed)
-              cat > lambda-vars.py << EOL
-              import sys
-
-              proj = sys.argv[1]
-              paths = proj.split(".")[1:]
-              lambdaParts = []
+          - template: 'azure-pipelines/include1.steps.yml'
+            parameters:
+              ProjectName: 'API.Uploads.NetSuite'
+              BuildNumber: '20200310.1'
+              Cluster: 'common-apis'
               
-              for p in paths:
-                  lambdaParts.append(p[0].lower() + p[1:])
+          # - script: |
+          #     echo $(Cluster)
+          #     echo $(CulsterSuffixed)
+          #     cat > lambda-vars.py << EOL
+          #     import sys
+
+          #     proj = sys.argv[1]
+          #     paths = proj.split(".")[1:]
+          #     lambdaParts = []
+              
+          #     for p in paths:
+          #         lambdaParts.append(p[0].lower() + p[1:])
                   
-              lambdaName = "-".join(lambdaParts)
-              print("##vso[task.setvariable variable=LambdaName]%s" %lambdaName)
-              print("##vso[task.setvariable variable=TargetProject]%s" %proj)
-              print(lambdaName)
-              print(proj)
-              EOL
+          #     lambdaName = "-".join(lambdaParts)
+          #     print("##vso[task.setvariable variable=LambdaName]%s" %lambdaName)
+          #     print("##vso[task.setvariable variable=TargetProject]%s" %proj)
+          #     print(lambdaName)
+          #     print(proj)
+          #     EOL
 
-          - task: PythonScript@0
-            inputs:
-              scriptSource: 'filePath'
-              scriptPath: 'lambda-vars.py'
-              arguments: 'Lambda.EmailSync.Integrator.OrchestrationWebhook'
+          # - task: PythonScript@0
+          #   inputs:
+          #     scriptSource: 'filePath'
+          #     scriptPath: 'lambda-vars.py'
+          #     arguments: 'Lambda.EmailSync.Integrator.OrchestrationWebhook'
 
-          - script: |
-              echo $(LambdaName)
-              echo $(TargetProject)
+          # - script: |
+          #     echo $(LambdaName)
+          #     echo $(TargetProject)
           # - script: |
           #     echo $(resources.pipeline.P.pipelineID)
           #     echo $(resources.pipeline.P.runName)
