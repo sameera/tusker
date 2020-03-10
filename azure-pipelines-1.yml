@@ -32,7 +32,7 @@ stages:
               ProjectName: 'API.Uploads.NetSuite'
               BuildNumber: '20200310.1'
               Cluster: 'common-apis'
-              
+
           # - script: |
           #     echo $(Cluster)
           #     echo $(CulsterSuffixed)
