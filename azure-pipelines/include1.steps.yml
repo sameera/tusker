@@ -5,8 +5,19 @@ parameters:
   type: string
 - name: Cluster
   type: string
+- name: TestObj
+  type: object
+  default: |
+    list:
+    - A
+    - B
+    - C
 
 steps:
+- ${{ each item in parameters.TestObj.list }}
+  - script: |
+    echo ${{ item }}
+    
 - script: |
     PROJ=${{ parameters.ProjectName }}
     API_NAME="$(echo ${PROJ//\./-} | awk '{print tolower($0)}')"
