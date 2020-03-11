@@ -9,14 +9,31 @@ parameters:
   type: object
   default: |
     list:
-    - A
-    - B
-    - C
+    - API.A
+    - API.B
+    - API.C
 
 steps:
+- script: |
+    cat > ce-apis.py << EOL
+    import sys
+
+    proj = sys.argv[1]
+    paths = proj.lower().split(".")
+
+    apiName = "-".join(paths)
+    print("##vso[task.setvariable variable=ApiName]%s" %apiName)
+    print("##vso[task.setvariable variable=TargetProject]%s" %proj)
+    EOL
+  displayName: "Write ECR Name Generator"
+
 - ${{ each item in parameters.TestObj.list }}
-  - script: |
-    echo ${{ item }}
+  - task: PythonScript@0
+    displayName: 'ParamTest'
+    inputs:
+      scriptSource: 'filePath'
+      scriptPath: 'test.py'
+      arguments: '${{ item }}'
     
 - script: |
     PROJ=${{ parameters.ProjectName }}
