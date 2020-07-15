@@ -13,7 +13,8 @@
 #  Cluster: 'EmailSync'
 
 steps:
- script: echo $(git rev-parse -q --verify "refs/tags/$tag")
+- script: echo $(git rev-parse -q --verify "refs/tags/$tag")
+
 
 #stages:
 #- stage: 'Verification'
