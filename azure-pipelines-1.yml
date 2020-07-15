@@ -9,29 +9,32 @@
 #     source: 'PreReq'
 #     project: epceylon
 
-variables:
-  Cluster: 'EmailSync'
+# variables:
+#  Cluster: 'EmailSync'
 
-stages:
-- stage: 'Verification'
-  pool:
-    vmImage: 'ubuntu-latest'
+steps:
+ script: echo $(git rev-parse -q --verify "refs/tags/$tag")
 
-  variables:
-    CulsterSuffixed: '$(Cluster)-Cluster'
+#stages:
+#- stage: 'Verification'
+#  pool:
+#    vmImage: 'ubuntu-latest'
 
-  jobs:
-  - deployment: 'VerifyVariables'
-    environment: 'Dev'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - template: 'azure-pipelines/include1.steps.yml'
-            parameters:
-              ProjectName: 'API.Uploads.NetSuite'
-              BuildNumber: '20200310.1'
-              Cluster: 'common-apis'
+  # variables:
+  #   CulsterSuffixed: '$(Cluster)-Cluster'
+
+  # jobs:
+  # - deployment: 'VerifyVariables'
+  #   environment: 'Dev'
+  #   strategy:
+  #     runOnce:
+  #       deploy:
+  #         steps:
+  #         - template: 'azure-pipelines/include1.steps.yml'
+  #           parameters:
+  #             ProjectName: 'API.Uploads.NetSuite'
+  #             BuildNumber: '20200310.1'
+  #             Cluster: 'common-apis'
 
           # - script: |
           #     echo $(Cluster)
