@@ -9,8 +9,9 @@
 #     source: 'PreReq'
 #     project: epceylon
 
-# variables:
-#  Cluster: 'EmailSync'
+variables:
+ Cluster: 'EmailSync'
+ tag: 'v1.0.0'
 
 steps:
 - script: |
@@ -22,7 +23,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $tagCommit = git rev-parse -q --verify "refs/tags/$tag"
+      $tagCommit = git version
       $hasTag = $tagCommit.Length
       Write-Host $tagCommit
 
