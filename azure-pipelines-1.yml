@@ -23,7 +23,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $tagCommit = git rev-parse -q --verify "refs/tags/$tag" 2>&1
+      $tagCommit = &"git rev-parse -q --verify 'refs/tags/$tag'" 2>&1
       $hasTag = $tagCommit.Length
       Write-Host $tagCommit
 
