@@ -11,11 +11,11 @@
 
 variables:
  Cluster: 'EmailSync'
- tag: 'v1.0.0'
+ tag: 'v1.1'
 
 steps:
 - script: |
-    git rev-parse -q --verify "refs/tags/$tag"
+    echo $(git rev-parse -q --verify "refs/tags/$tag")
     echo 'Gitted'
 
 - task: PowerShell@2
@@ -23,7 +23,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $tagCommit = git version
+      $tagCommit = git rev-parse -q --verify "refs/tags/$tag" 2>&1
       $hasTag = $tagCommit.Length
       Write-Host $tagCommit
 
