@@ -15,7 +15,7 @@ variables:
 
 steps:
 - script: |
-    echo $(git rev-parse -q --verify "refs/tags/$tag")
+    git rev-parse -q --verify "refs/tags/$tag"
     echo 'Gitted'
 
 - task: PowerShell@2
