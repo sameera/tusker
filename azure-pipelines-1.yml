@@ -26,6 +26,11 @@ steps:
       $tagCommit = (git rev-parse -q --verify "refs/tags/v1.1")
       $hasTag = $tagCommit.Length
       Write-Host $tagCommit
+      Write-Host "##vso[task.setvariable variable=GitTag]$tag"
+      $tagCommit = (git rev-parse -q --verify "refs/tags/$tag")
+      $hasTag = $tagCommit.Length
+      Write-Host "##vso[task.setvariable variable=IsTagged]$hasTag"
+      Write-Host "Is Tagged: $hasTag"
 
 #stages:
 #- stage: 'Verification'
